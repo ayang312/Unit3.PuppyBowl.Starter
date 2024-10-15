@@ -1,3 +1,5 @@
+import { useGetPuppiesQuery } from "../../store/api";
+
 /**
  * @component
  * Shows a list of puppies in the roster.
@@ -5,6 +7,11 @@
  */
 export default function PuppyList({ setSelectedPuppyId }) {
   // TODO: Get data from getPuppies query
+
+  const { data: puppies = [], isLoading, error } = useGetPuppiesQuery();
+
+  if (isLoading) return <p>Loading puppies...</p>;
+  if (error) return <p>Error loading puppies!</p>;
 
   return (
     <article>
